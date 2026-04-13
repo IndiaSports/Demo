@@ -4,446 +4,238 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cricket Superstar League - Premium</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --primary: #229ED9; /* Telegram Brand Blue */
-    --primary-dark: #1b82b3;
-    --accent: #f59e0b; /* Premium Gold/Yellow */
-    --text-main: #0f172a;
+    --primary: #0088cc; /* Telegram Blue */
+    --accent: #f59e0b; /* Gold */
+    --text-main: #1e293b;
     --text-muted: #64748b;
-    --bg-body: #e2e8f0;
+    --bg-body: #f1f5f9;
     --bg-card: #ffffff;
-    --border-light: #e2e8f0;
+    --border: #e2e8f0;
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Inter', sans-serif;
     background: var(--bg-body);
-    display: flex;
-    justify-content: center;
-    padding: 30px 20px;
     color: var(--text-main);
+    line-height: 1.5;
+    padding: 20px;
   }
 
-  /* Main Container */
-  .telegram-profile {
-    max-width: 1050px;
-    width: 100%;
+  .main-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
     background: var(--bg-card);
-    border-radius: 24px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
   }
 
-  /* Banner Section */
-  .profile-banner {
-    height: 260px;
-    position: relative;
-    overflow: hidden;
-  }
-  .profile-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-  }
-  /* Subtle gradient overlay on banner */
-  .profile-banner::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 40%);
+  /* Banner */
+  .banner {
+    height: 200px;
+    background: #0f172a url('https://imgs.crazygames.com/cricket-superstar-league_16x9/20250407071252/cricket-superstar-league_16x9-cover?metadata=none&quality=60') center/cover;
   }
 
-  /* Layout */
-  .profile-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    padding: 0 40px 40px;
-    margin-top: -60px; /* Pulls content up over the banner */
-    position: relative;
-    z-index: 2;
+  .content-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 30px;
+    padding: 0 30px 30px;
   }
 
   /* Sidebar */
-  .profile-sidebar {
-    flex: 0 0 300px;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 20px;
-    padding: 30px 24px;
+  .sidebar {
+    margin-top: -50px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
-    height: fit-content;
   }
 
-  /* Avatar */
   .avatar {
-    width: 130px;
-    height: 130px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 16px;
-    border: 5px solid var(--bg-card);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    margin: 0 auto 15px;
+    border: 4px solid var(--bg-card);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     background: #fff;
   }
-  .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 
-  /* Channel Info */
-  .channel-name {
-    font-size: 24px;
+  .channel-info h1 {
+    font-size: 20px;
     font-weight: 800;
-    letter-spacing: -0.5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+    margin-bottom: 4px;
   }
-  /* Verified Badge */
-  .verified-badge {
-    color: var(--primary);
-    width: 20px;
-    height: 20px;
-  }
-  
+
   .handle {
-    font-size: 15px;
     color: var(--primary);
-    font-weight: 500;
-    margin-bottom: 24px;
-  }
-
-  /* Stats Container */
-  .stats {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-  .stat {
-    flex: 1;
-    background: #f8fafc;
-    padding: 12px 5px;
-    border-radius: 12px;
-    border: 1px solid var(--border-light);
-  }
-  .stat b {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
     display: block;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-main);
-  }
-  .stat span {
-    font-size: 12px;
-    color: var(--text-muted);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
   }
 
-  /* Features List */
-  .features-list {
-    text-align: left;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
   }
-  .info {
+  .stat-box {
+    background: #f8fafc;
+    padding: 10px 2px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .stat-box b { font-size: 16px; display: block; }
+  .stat-box span { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
+
+  /* Features */
+  .feature-item {
     display: flex;
     align-items: center;
     gap: 12px;
     font-size: 14px;
-    font-weight: 500;
-    color: #334155;
+    margin-bottom: 12px;
+    text-align: left;
+    color: #475569;
   }
-  .info-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: #eff6ff;
+  .dot { height: 8px; width: 8px; background: var(--primary); border-radius: 50%; }
+
+  /* CTA Button */
+  .btn-join {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary);
-  }
-  .info-icon.gold { background: #fef3c7; color: #d97706; }
-  .info-icon svg {
-    width: 18px;
-    height: 18px;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    fill: none;
-  }
-
-  /* Premium Telegram Button */
-  a { text-decoration: none; }
-  .telegram-btn {
+    gap: 10px;
     width: 100%;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 50px;
-    background: linear-gradient(135deg, #2AABEE, #229ED9);
+    background: var(--primary);
     color: white;
-    font-weight: 600;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(34, 158, 217, 0.3);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 10px;
+    transition: opacity 0.2s;
   }
-  .telegram-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(34, 158, 217, 0.4);
-    background: linear-gradient(135deg, #229ED9, #1b82b3);
-  }
-  .telegram-btn svg {
-    width: 22px;
-    height: 22px;
-    fill: #fff;
-  }
+  .btn-join:hover { opacity: 0.9; }
 
-  /* Right Content Area */
-  .profile-content {
-    flex: 1;
-    min-width: 300px;
-    padding-top: 60px; /* Align with avatar */
-  }
-
-  .section-title {
+  /* Main Content */
+  .main-content { padding-top: 30px; }
+  
+  .section-head {
     font-size: 18px;
     font-weight: 700;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
   }
 
-  /* Card Grid */
-  .card-grid {
+  .card-row {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
     margin-bottom: 30px;
   }
 
-  /* Premium Cards */
-  .card {
+  .video-card {
     position: relative;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
-    aspect-ratio: 4/5;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    cursor: pointer;
-    transition: transform 0.3s ease;
+    height: 220px;
   }
-  .card:hover {
-    transform: translateY(-5px);
-  }
-  .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  .card:hover img {
-    transform: scale(1.08);
-  }
-  .card-overlay {
+  .video-card img { width: 100%; height: 100%; object-fit: cover; }
+  
+  .video-card .label {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.2) 50%, rgba(15,23,42,0) 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 20px;
-  }
-  .card-overlay p {
-    color: #fff;
-    font-size: 15px;
+    bottom: 0; left: 0; right: 0;
+    padding: 15px 10px 10px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    font-size: 13px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .card-overlay svg {
-    width: 16px;
-    height: 16px;
-    stroke: var(--accent);
-    stroke-width: 2.5;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
   }
 
-  /* About Section */
-  .about {
+  .about-box {
     background: #f8fafc;
-    border: 1px solid var(--border-light);
-    border-radius: 16px;
-    padding: 24px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-  .about b {
-    color: var(--text-main);
-    font-size: 16px;
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 12px;
+    color: #475569;
+    font-size: 14px;
   }
 
-  /* Mobile Responsive */
-  @media(max-width: 768px) {
-    .profile-container {
-      flex-direction: column;
-      padding: 0 20px 20px;
-      gap: 20px;
-    }
-    .profile-sidebar {
-      flex: 1;
-    }
-    .profile-content {
-      padding-top: 10px;
-    }
-    .profile-banner {
-      height: 180px;
-    }
+  /* Mobile */
+  @media (max-width: 768px) {
+    .content-layout { grid-template-columns: 1fr; padding: 15px; }
+    .sidebar { margin-top: -40px; }
+    .banner { height: 140px; }
   }
 </style>
 </head>
-
 <body>
 
-<div class="telegram-profile">
+<div class="main-wrapper">
+  <div class="banner"></div>
 
-  <div class="profile-banner">
-    <img src="https://imgs.crazygames.com/cricket-superstar-league_16x9/20250407071252/cricket-superstar-league_16x9-cover?metadata=none&quality=60" alt="Cricket Banner">
-  </div>
-
-  <div class="profile-container">
-
-    <div class="profile-sidebar">
-      
-      <div class="avatar">
-        <img src="https://png.pngtree.com/png-vector/20241014/ourmid/pngtree-female-cricket-player-in-pakistani-uniform-clipart-png-image_14089552.png" alt="Profile Picture">
+  <div class="content-layout">
+    <aside class="sidebar">
+      <img src="https://png.pngtree.com/png-vector/20241014/ourmid/pngtree-female-cricket-player-in-pakistani-uniform-clipart-png-image_14089552.png" class="avatar" alt="Logo">
+      <div class="channel-info">
+        <h1>Cricket Superstar</h1>
+        <a href="#" class="handle">@CricketSuperstar</a>
       </div>
 
-      <div class="channel-name">
-        Cricket Superstar
-        <svg class="verified-badge" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.9 14.7L6 12.6l1.5-1.5 2.6 2.6 6.4-6.4 1.5 1.5-7.9 7.9z"/>
-        </svg>
-      </div>
-      <div class="handle">@CricketSuperstar</div>
-
-      <div class="stats">
-        <div class="stat"><b>12K</b><span>Members</span></div>
-        <div class="stat"><b>300+</b><span>Posts</span></div>
-        <div class="stat"><b>1.5K</b><span>Active</span></div>
+      <div class="stats-grid">
+        <div class="stat-box"><b>12K</b><span>Members</span></div>
+        <div class="stat-box"><b>300+</b><span>Videos</span></div>
+        <div class="stat-box"><b>Active</b><span>Community</span></div>
       </div>
 
-      <div class="features-list">
-        <div class="info">
-          <div class="info-icon">
-            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          Live Matches & Updates
-        </div>
-        
-        <div class="info">
-          <div class="info-icon">
-            <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          </div>
-          Deep Stats & Analysis
-        </div>
-
-        <div class="info">
-          <div class="info-icon gold">
-            <svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-          </div>
-          Exclusive Giveaways
-        </div>
+      <div class="features">
+        <div class="feature-item"><div class="dot"></div> Live Match Scores</div>
+        <div class="feature-item"><div class="dot"></div> Expert Analysis</div>
+        <div class="feature-item"><div class="dot" style="background:var(--accent)"></div> Daily Giveaways</div>
       </div>
 
-      <a href="https://t.me/CricketSuperstar" target="_blank">
-        <button class="telegram-btn">
-          <svg viewBox="0 0 24 24">
-            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.896-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-          </svg>
-          Join Telegram Channel
-        </button>
+      <a href="https://t.me/CricketSuperstar" class="btn-join">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.184-3.247 2.977-3.307 3.23-.007.032-.014.15.056.212s.174.041.249.024c.106-.024 1.793-1.14 5.061-3.345.48-.33.913-.49 1.302-.48.428.008 1.252.241 1.865.44.752.245 1.349.374 1.297.789.027.216.325.437.893.663 3.498 1.524 5.83 2.529 6.998 3.014z"/></svg>
+        JOIN TELEGRAM
       </a>
+    </aside>
 
-    </div>
-
-    <div class="profile-content">
-      
-      <h3 class="section-title">Top Highlights</h3>
-
-      <div class="card-grid">
-        
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da" alt="Last over thriller">
-          <div class="card-overlay">
-            <p>
-              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              Last over thriller
-            </p>
-          </div>
+    <main class="main-content">
+      <h2 class="section-head">Top Highlights</h2>
+      <div class="card-row">
+        <div class="video-card">
+          <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da" alt="Match">
+          <div class="label">Last Over Thriller</div>
         </div>
-
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e" alt="Fastest century">
-          <div class="card-overlay">
-            <p>
-              <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              Fastest century
-            </p>
-          </div>
+        <div class="video-card">
+          <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e" alt="Match">
+          <div class="label">Fastest Century</div>
         </div>
-
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1" alt="5 wicket haul">
-          <div class="card-overlay">
-            <p>
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              5 Wicket haul
-            </p>
-          </div>
+        <div class="video-card">
+          <img src="https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1" alt="Match">
+          <div class="label">5 Wicket Haul</div>
         </div>
-
       </div>
 
-      <div class="about">
-        <b>About Channel</b><br><br>
-        Your ultimate destination for real-time cricket updates, electrifying match highlights, and exclusive behind-the-scenes content. Join our community for the fastest score updates, deep pitch analysis, and weekly fan giveaways. 
+      <h2 class="section-head">About Us</h2>
+      <div class="about-box">
+        Your ultimate destination for real-time cricket updates, electrifying match highlights, and exclusive behind-the-scenes content. Join our community for the fastest score updates and deep pitch analysis.
       </div>
-
-    </div>
-
+    </main>
   </div>
-
 </div>
 
 </body>
